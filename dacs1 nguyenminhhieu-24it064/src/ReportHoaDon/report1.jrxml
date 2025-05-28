@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b9ada956-f3dc-4c03-af9f-f842a34fd482">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="193"/>
+	<parameter name="UserID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[Select ord.OrderID,ord.Name,ordeID.OrderDetailID,ordeId.Date,us.Fullname,pro.NamePr,ordeId.Quantity,ordeId.Price,ordeId.Payment_method
+from OrderDetailID ordeId, OrderKH ord,Product pro,UserKH us
+where ordeId.OrderID=ord.OrderID and pro.ProductID=ordeId.ProductID and us.UserID=ordeId.UserID and us.UserID=$P{UserID}]]>
+	</queryString>
+	<field name="OrderID" class="java.lang.Integer"/>
+	<field name="Name" class="java.lang.String"/>
+	<field name="OrderDetailID" class="java.lang.Integer"/>
+	<field name="Date" class="java.lang.String"/>
+	<field name="Fullname" class="java.lang.String"/>
+	<field name="NamePr" class="java.lang.String"/>
+	<field name="Quantity" class="java.lang.Integer"/>
+	<field name="Price" class="java.lang.Integer"/>
+	<field name="Payment_method" class="java.lang.String"/>
+	<variable name="Sum_Row" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Price}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79" uuid="443c4f16-99e0-4d48-9802-ca28c0be3c9b"/>
+				<textElement textAlignment="Center">
+					<font size="48"/>
+				</textElement>
+				<text><![CDATA[Thống kê]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="100" height="20" uuid="c9624acf-c10c-481a-b0e1-faaa9ee7d6af"/>
+				<text><![CDATA[Mã hóa đơn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="56" width="100" height="20" uuid="7a903794-163c-482e-a76d-0e4152bb8221"/>
+				<text><![CDATA[Tên hóa đơn]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="16" width="100" height="20" uuid="bb1633f4-e5ec-4496-85db-d279e2a96a6d"/>
+				<text><![CDATA[Ngày lập]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="56" width="125" height="20" uuid="ccbba4c8-c24e-453d-b0c9-bfd2b34dc291"/>
+				<text><![CDATA[Phương thức thanh toán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="105" width="100" height="20" uuid="c1b45d04-48f5-46b3-8a21-98ab99df5022"/>
+				<text><![CDATA[Tên khách hàng]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="390" y="16" width="100" height="20" uuid="e18dcc94-ef38-4305-8f6b-b02676464f83"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="56" width="140" height="20" uuid="5f9eb7fd-e311-46bb-bfc0-89b24bdf79f6"/>
+				<textFieldExpression><![CDATA[$F{Payment_method}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="16" width="135" height="20" uuid="10a76907-2eb3-4fbc-b0a7-92c2968fc819"/>
+				<textFieldExpression><![CDATA[$F{OrderID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="56" width="135" height="20" uuid="a198770a-12b7-4e26-860b-61cf13001de9"/>
+				<textFieldExpression><![CDATA[$F{Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="105" width="156" height="20" uuid="a96d22f8-5349-4606-a196-cd58af463361"/>
+				<textFieldExpression><![CDATA[$F{Fullname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="430" y="41" width="125" height="20" uuid="31693079-10f5-4969-9e57-e1a55b54293f"/>
+				<text><![CDATA[Giá tiền]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="41" width="100" height="20" uuid="2be4b2c5-8839-4e75-a63d-ef4e843e870a"/>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="41" width="150" height="20" uuid="ff16922d-c497-4839-8b7d-1b5f7db6ad42"/>
+				<text><![CDATA[Sản phẩm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="41" width="103" height="20" uuid="42d81f8e-a6db-42e3-a90d-1cb2daa9ed5b"/>
+				<text><![CDATA[Ngày lập]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="41" width="77" height="20" uuid="f8002cc6-dcce-4ce0-b57e-34da741af3d9"/>
+				<text><![CDATA[Mã chi tiết HD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="77" height="20" uuid="80fb1a8d-103b-4a9e-b20d-43e92f8b55b3"/>
+				<textFieldExpression><![CDATA[$F{OrderDetailID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="20" uuid="8398b1a1-84e1-41e4-b111-dad00a250720"/>
+				<textFieldExpression><![CDATA[$F{Date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="150" height="20" uuid="72871c15-5ebd-4f85-8450-4580d1290151"/>
+				<textFieldExpression><![CDATA[$F{NamePr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="100" height="20" uuid="848eb418-0fe2-4b1c-a8b7-c48198b57830"/>
+				<textFieldExpression><![CDATA[$F{Quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="0" width="125" height="20" uuid="f56edde9-145a-4243-83ca-37489344a7cb"/>
+				<textFieldExpression><![CDATA[$F{Price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="378" y="19" width="100" height="20" uuid="ed76c7a1-41cf-4a5d-82d2-5cfbbae30f10"/>
+				<textFieldExpression><![CDATA[$V{Sum_Row}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="269" y="19" width="100" height="20" uuid="02b52289-25db-4fce-af6d-42b53e352da8"/>
+				<text><![CDATA[Tổng cộng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="19" width="100" height="20" uuid="913b2eeb-9fcc-41bd-aa8b-945e9257c19a"/>
+				<text><![CDATA[VNĐ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="430" y="16" width="80" height="20" uuid="0a866da6-6a52-40b5-bc31-566378c598f3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="16" width="40" height="20" uuid="3c0b74b4-7f20-4579-ac39-795f9b3a685a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
